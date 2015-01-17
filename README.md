@@ -7,8 +7,12 @@ Conky is a free, light-weight system monitor for X, that displays any informatio
 
 How to install conky on Ubuntu, Mint and Debian?
 
-Open a terminal and type: sudo apt-get install conky conky-all
+Open a terminal and type: sudo apt-get install conky conky-all.
+
 Also it is recommended to install curl, lm-sensors and hddtemp (sudo apt-get install curl lm-sensors hddtemp)
+
+-------------------------------------------------------------------------------------------------------------------
+
 
 How to set a conky?
 
