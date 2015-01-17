@@ -1,0 +1,115 @@
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
+if_up_strictness link
+
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
+
+format_human_readable
+
+# - Text settings - #
+use_xft yes
+xftfont Ubuntu:size=8
+override_utf8_locale yes
+text_buffer_size 2048
+
+# - Window specs - #
+
+own_window_class Conky
+own_window yes
+own_window_type conky
+own_window_argb_visual yes
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+alignment top_right
+gap_x 10
+gap_y 20
+minimum_size 180 500
+maximum_width 1200
+
+#- Graphics settings -#
+draw_shades no
+
+default_color cccccc
+
+color0 white
+color1 ddaa00
+color2 white
+color3 5C3566
+
+TEXT
+SYSTEM $stippled_hr
+
+#- System -#
+Name: $alignr$nodename 
+OS: $alignr${alignc} ${pre_exec lsb_release -d | cut -f 2| tr "[:upper:]" "[:lower:]"} 
+Kernel: $alignr$kernel
+Uptime: $alignr$uptime
+
+#- CPU -#
+CPU1: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu1}%${color}${font} ${alignr}${cpugraph cpu1 8,90 dd7300 ddaa00}
+CPU2: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu2}%${color}${font} ${alignr}${cpugraph cpu2 8,90 dd7300 ddaa00}
+CPU3: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu3}%${color}${font} ${alignr}${cpugraph cpu3 8,90 dd7300 ddaa00}
+CPU4: ${font Ubuntu:style=Bold:size=8}${color1}${cpu cpu4}%${color}${font} ${alignr}${cpugraph cpu4 8,90 dd7300 ddaa00}
+
+#- Memory -#
+Ram ${alignr}$mem / $memmax ($memperc%)
+${membar 4,180 }
+Swap ${alignr}$swap / $swapmax ($swapperc%)
+${swapbar 4,180}
+
+#- HHD -#
+${font Ubuntu:style=Bold:size=8}HDD $stippled_hr${font}
+
+${font Ubuntu:style=normal:size=8}${color}Disk Root ${alignr}${font Ubuntu:size=7,weight:normal}${color}Used:  ${fs_used /} / ${fs_size /}
+${diskiograph 8,180 dd7300 ddaa00}
+
+#- TOP -#
+TOP$stippled_hr
+
+${alignc}CPU
+Name $alignr PID    CPU%   MEM%
+${color1}${top name 1} $alignr ${top pid 1}   ${top cpu 1}    ${top mem 1} ${color} 
+${top name 2} $alignr ${top pid 2}   ${top cpu 2}    ${top mem 2}  
+${top name 3} $alignr ${top pid 3}   ${top cpu 3}    ${top mem 3}  
+
+${alignc}Memory
+Name$color $alignr PID    CPU%   MEM%
+${color1}${top_mem name 1} $alignr ${top_mem pid 1}   ${top_mem cpu 1}    ${top_mem mem 1}  ${color}
+${top_mem name 2} $alignr ${top_mem pid 2}   ${top_mem cpu 2}    ${top_mem mem 2}  
+${top_mem name 3} $alignr ${top_mem pid 3}   ${top_mem cpu 3}    ${top_mem mem 3}  
+
+#- Network -#
+${font Ubuntu:style=Bold:size=8}NETWORK $stippled_hr${font}
+# WLAN0
+${if_up wlan0}
+${font}${color}Up:  ${font Ubuntu:style=Bold:size=8}${color1}${upspeed wlan0}${color}${font} ${alignr}${upspeedgraph wlan0 10,90 dd7300 ddaa00}
+Total:  ${font Ubuntu:style=Bold:size=8}${color2}${totalup wlan0}${color}${font}
+${font}${color}Down:  ${font Ubuntu:style=Bold:size=8}${color1}${downspeed wlan0}${color}${font} ${alignr}${downspeedgraph wlan0 10,90 dd7300 ddaa00}
+Total:  ${font Ubuntu:style=Bold:size=8}${color2}${totaldown wlan0}
+
+${font}${color}SSID:${color} ${alignr}${color2}${wireless_essid wlan0}${color}
+${font}${color}Local IP: ${alignr}${color2}${addr wlan0}${color}
+Public IP: ${alignr}${color2}${execi 6000 dig +short myip.opendns.com @resolver1.opendns.com}${color}
+# ETH0
+${else}${if_up eth0}
+${font}${color}Up:  ${font Ubuntu:style=Bold:size=8}${color1}${upspeed eth0}${color}${font} ${alignr}${upspeedgraph eth0 10,90 dd7300 ddaa00}
+Total:  ${font Ubuntu:style=Bold:size=8}${color2}${totalup eth0}${color}${font}
+${font}${color}Down:  ${font Ubuntu:style=Bold:size=8}${color1}${downspeed eth0}${color}${font} ${alignr}${downspeedgraph eth0 10,90 dd7300 ddaa00}
+Total:  ${font Ubuntu:style=Bold:size=8}${color2}${totaldown eth0}
+
+${font}${color}Local IP: ${alignr}${color2}${addr eth0}${color}
+Public IP: ${alignr}${color2}${execi 6000 dig +short myip.opendns.com @resolver1.opendns.com}${color}
+# PPP0
+${else}${if_up ppp0}
+${font}${color}Up:  ${font Ubuntu:style=Bold:size=8}${color1}${upspeed ppp0}${color}${font} ${alignr}${upspeedgraph ppp0 10,90 dd7300 ddaa00}$
+Total:  ${font Ubuntu:style=Bold:size=8}${color2}${totalup ppp0}${color}${font}
+${font}${color}Down:  ${font Ubuntu:style=Bold:size=8}${color1}${downspeed ppp0}${color}${font} ${alignr}${downspeedgraph ppp0 10,90 dd7300 ddaa00}
+Total:  ${font Ubuntu:style=Bold:size=8}${color2}${totaldown ppp0}${color}${font}
+
+${font}${color}$Local IP: ${alignr}${color2}${addr ppp0}${color}
+${else}${font}${color}Network Unavailable${voffset 14}${endif}${endif}${endif}
