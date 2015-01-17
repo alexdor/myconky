@@ -18,7 +18,7 @@ How to set a conky?
 
  1) Create a empty document on your home folder and name it ".conkyrc" (the dot in front of the name makes the file     hidden).
  
-  2) Paste the code from a conky script and save the file. (You can display the conky by typing conky to a terminal).
+  2) Paste the code from a conky script and save the file.
   
   3) Create another empty document on your home folder and name it ".startconky" (we will use it to start conky on       startup).
   
