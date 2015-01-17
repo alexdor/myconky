@@ -1,9 +1,13 @@
 # myconky
 Conky scripts
 
+-------------------------------------------------------------------------------------------------------------------
+
 What is a conky?
 
 Conky is a free, light-weight system monitor for X, that displays any information on your desktop. Conky is licensed under the GPL and runs on Linux and BSD. Official website: http://conky.sourceforge.net/
+
+-------------------------------------------------------------------------------------------------------------------
 
 How to install conky on Ubuntu, Mint and Debian?
 
